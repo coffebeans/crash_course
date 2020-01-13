@@ -1,6 +1,6 @@
 import Rectangle from "../src/rectangle";
 
-describe('area', function () {
+describe('area', () => {
     it('should return area of rectangle for given length and breadth', () => {
         let rectangle = new Rectangle(10, 5);
         let area = rectangle.area();
@@ -8,7 +8,7 @@ describe('area', function () {
     });
 });
 
-describe('perimter', function () {
+describe('perimter', () => {
     it('should return perimeter of rectangle for given length and breadth', () => {
         let rectangle = new Rectangle(10, 5);
         let perimeter = rectangle.perimeter();
