@@ -6,4 +6,8 @@ export default class Rectangle {
     area() {
         return this.length*this.breadth;
     }
+
+    perimeter(){
+        return (this.length+this.breadth)*2
+    }
 }
