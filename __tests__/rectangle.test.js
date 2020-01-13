@@ -6,7 +6,9 @@ describe('area', function () {
         let area = rectangle.area();
         expect(area).toBe(50);
     });
+});
 
+describe('perimter', function () {
     it('should return perimeter of rectangle for given length and breadth', () => {
         let rectangle = new Rectangle(10, 5);
         let perimeter = rectangle.perimeter();
