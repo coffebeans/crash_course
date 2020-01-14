@@ -6,27 +6,10 @@ export default class Measurement {
         this.unit = unit;
     }
     equals(measurement) {
-        if( measurement instanceof Measurement ) {
-            if ( measurement.unit === this.unit ) {
-                if ( measurement.value === this.value ) {
-                    return true
-                }
-                return false;
-            } else {
-                switch (measurement.unit) {
-                    case Unit.Centimeter: {
-                        const newMeasurementObj = new Measurement(measurement.value/100, Unit.Meter);
-                        return newMeasurementObj.value === this.value;
-                    }
-                    case Unit.Meter: {
-                        const newMeasurementObj = new Measurement(measurement.value * 100, Unit.Centimeter);
-                        return newMeasurementObj.value === this.value;
-                    }
-                    default: {
-                        return false;
-                    }
-                }
-            }
+        if (measurement instanceof Measurement) {
+            const incomingCentimeterValue = measurement.value * measurement.unit.toCentimeterFactor;
+            const currentCentimeterValue = this.value * this.unit.toCentimeterFactor;
+            return incomingCentimeterValue === currentCentimeterValue;
         }
     }
 }
