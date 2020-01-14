@@ -2,19 +2,18 @@ import { Measurement, Unit } from "../src/measurement";
 
 describe("Measurement", () => {
     describe('#equals', () => {
-        it('should return true for centimeter 100 and meter 1', () => {
-            let m1 = new Measurement(100, Unit.CM);
-            let m2 = new Measurement(1, Unit.M);
+        const centimeter_100 = new Measurement(100, Unit.CM);
+        const meter_1 = new Measurement(1, Unit.M);
 
-            let isEqual = m1.equals(m2);
+        it('should return true for centimeter 100 and meter 1', () => {
+            const isEqual = centimeter_100.equals(meter_1);
+
+            expect(meter_1.unit).toBe(Unit.M);
             expect(isEqual).toBe(true);
         });
 
         it('should return true for meter 1 and centimeter 100', () => {
-            let m1 = new Measurement(1, Unit.M);
-            let m2 = new Measurement(100, Unit.CM);
-
-            let isEqual = m1.equals(m2);
+            const isEqual = meter_1.equals(centimeter_100);
             expect(isEqual).toBe(true);
         });
     });
