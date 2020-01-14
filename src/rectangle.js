@@ -1,13 +1,19 @@
 export default class Rectangle {
-    constructor(l,b){
-       this.length = l
-       this.breadth = b
+    constructor(length, breadth) {
+        if (length <= 0 || breadth <= 0) {
+            throw new Error('Side cannot be negative!');
+        }
+        this.length = length;
+        this.breadth = breadth;
     }
     area() {
-        return this.length*this.breadth;
+        return this.length * this.breadth;
     }
 
     perimeter(){
-        return (this.length+this.breadth)*2
+        return (this.length + this.breadth) * 2;
+    }
+    static createSquare(side) {
+        return new Rectangle(side, side);
     }
 }
