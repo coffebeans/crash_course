@@ -6,17 +6,11 @@ export default class Measurement {
         this.unit = unit;
     }
     equals(measurement) {
-        if (measurement instanceof Measurement) {
-            if (measurement.unit.type === 'LENGTH') {
-                const incomingCentimeterValue = measurement.value * measurement.unit.toCentimeterFactor;
-                const currentCentimeterValue = this.value * this.unit.toCentimeterFactor;
-                return incomingCentimeterValue === currentCentimeterValue;
-            }
-            else {
-                const incomingGramValue = measurement.value * measurement.unit.toGramFactor;
-                const currentGramValue = this.value * this.unit.toGramFactor;
-                return incomingGramValue === currentGramValue;
-            }
-     }
+        if (measurement instanceof Measurement && measurement.unit.type === this.unit.type) {
+            const incomingUnitValue = measurement.value * measurement.unit.toUnitFactor;
+            const currentUnitValue = this.value * this.unit.toUnitFactor;
+            return incomingUnitValue === currentUnitValue;
+        }
+        throw new Error('Invalid comparison!');
     }
 }

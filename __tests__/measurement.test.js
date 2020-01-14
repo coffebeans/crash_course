@@ -78,4 +78,22 @@ describe ("Measurement", function() {
             expect(result).toBe(true);
         });
     });
+    describe('INVALID COMPARISION', () => {
+        it("checks if 1 grams is 1 centimeter should throw an error", () => {
+            let measurement1 = new Measurement(1, Unit.Gram);
+            let measurement2 = new Measurement(1, Unit.Centimeter);
+            let result = () => {
+                measurement1.equals(measurement2);
+            };
+            expect(result).toThrow('Invalid comparison!');
+        });
+        it("checks if 1 kilogram is 1 kilometer should throw an error", () => {
+            let measurement1 = new Measurement(1, Unit.Kilogram);
+            let measurement2 = new Measurement(1, Unit.Kilometer);
+            let result = () => {
+                measurement1.equals(measurement2)
+            };
+            expect(result).toThrow('Invalid comparison!');
+        });
+    });
 });
