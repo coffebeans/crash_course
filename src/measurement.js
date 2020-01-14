@@ -5,8 +5,12 @@ class Measurement {
     } 
     
     equals(measure) {
-        let measurement = this.value * this.unit.toCentimeterFactor;
-        let otherMeasurement = measure.value * measure.unit.toCentimeterFactor;
+        if(this.unit.type !== measure.unit.type) {
+            throw new Error('Incompatible unit type');
+        }
+
+        let measurement = this.value * this.unit.conversionFactor;
+        let otherMeasurement = measure.value * measure.unit.conversionFactor;
 
         return measurement === otherMeasurement;
     }
@@ -14,14 +18,25 @@ class Measurement {
 
 const Unit = {
    'CM': {
-       toCentimeterFactor: 1,
+       conversionFactor: 1,
+       type: 'length'
    },
    'M': {
-        toCentimeterFactor: 100,
+        conversionFactor: 100,
+        type: 'length'
     },
    'KM': {
-        toCentimeterFactor: 100000,
+        conversionFactor: 100000,
+        type: 'length'
     },
+    'G': {
+        conversionFactor: 1,
+        type: 'weight'
+    },
+    'KG': {
+         conversionFactor: 1000,
+         type: 'weight'
+     },
 }
 
 module.exports = {

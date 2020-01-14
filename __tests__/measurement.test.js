@@ -31,5 +31,20 @@ describe("Measurement", () => {
             const isEqual = centimeter_1000.equals(kilometer_1);
             expect(isEqual).toBe(true);
         });
+
+        it('should return true for grams 1000 and kilogram 1', () => {
+            const kilogram_1 = new Measurement(1, Unit.KG);
+            const gram_1000 = new Measurement(1000, Unit.G);
+
+            const isEqual = gram_1000.equals(kilogram_1);
+            expect(isEqual).toBe(true);
+        });
+
+        it('should throw error for grams 1 and centimeter 1', () => {
+            const gram_1 = new Measurement(1, Unit.G);
+            const centimeter_1 = new Measurement(1, Unit.CM);
+
+            expect(() => { gram_1.equals(centimeter_1) }).toThrow('Incompatible unit type');
+        });
     });
 });
