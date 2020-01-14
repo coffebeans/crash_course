@@ -19,5 +19,3 @@ describe('Square', function () {
   })
 
 });
-
-
