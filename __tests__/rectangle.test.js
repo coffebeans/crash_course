@@ -1,6 +1,14 @@
 import Rectangle from "../src/rectangle";
 
 describe("Rectangle", function() {
+  describe("instance", () => {
+    it("should return Error when length or breadth is negative", function() {
+      expect(function() {
+        new Rectangle(-10, 5);
+      }).toThrow("Length or Breadth cannot be negative");
+    });
+  });
+
   describe("area", function() {
     it("should return area as 50 when length and breadth are 10 and 5", function() {
       let rect = new Rectangle(10, 5);
@@ -19,6 +27,14 @@ describe("Rectangle", function() {
 });
 
 describe("Square", function() {
+  describe("constructor", () => {
+    it("should return Error when side is negative", function() {
+      expect(function() {
+        Rectangle.createSquare(-5);
+      }).toThrow("Side cannot be negative");
+    });
+  });
+
   describe("area", function() {
     it("should return area as 25 when side is 5", function() {
       let sqr = Rectangle.createSquare(5);

@@ -1,10 +1,17 @@
 export default class Rectangle {
   constructor(length, breadth) {
-    this.length = length;
-    this.breadth = breadth;
+    if (length < 0 || breadth < 0) {
+      throw new Error("Length or Breadth cannot be negative");
+    } else {
+      this.length = length;
+      this.breadth = breadth;
+    }
   }
 
   static createSquare(side) {
+    if (side < 0) {
+      throw new Error("Side cannot be negative");
+    }
     return new Rectangle(side, side);
   }
 
