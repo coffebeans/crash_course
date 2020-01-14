@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "it is a template for installing all dependencies needed for running a javascript code with testing",
   "scripts": {
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watchAll --coverage --verbose"
   },
   "author": "preeti",
   "license": "ISC",
