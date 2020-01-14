@@ -7,9 +7,16 @@ export default class Measurement {
     }
     equals(measurement) {
         if (measurement instanceof Measurement) {
-            const incomingCentimeterValue = measurement.value * measurement.unit.toCentimeterFactor;
-            const currentCentimeterValue = this.value * this.unit.toCentimeterFactor;
-            return incomingCentimeterValue === currentCentimeterValue;
-        }
+            if (measurement.unit.type === 'LENGTH') {
+                const incomingCentimeterValue = measurement.value * measurement.unit.toCentimeterFactor;
+                const currentCentimeterValue = this.value * this.unit.toCentimeterFactor;
+                return incomingCentimeterValue === currentCentimeterValue;
+            }
+            else {
+                const incomingGramValue = measurement.value * measurement.unit.toGramFactor;
+                const currentGramValue = this.value * this.unit.toGramFactor;
+                return incomingGramValue === currentGramValue;
+            }
+     }
     }
 }
