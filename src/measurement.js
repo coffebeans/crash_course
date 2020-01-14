@@ -2,28 +2,26 @@ class Measurement {
     constructor(value, unit) {
         this.value = value;
         this.unit = unit;
-    }
-
-    
+    } 
     
     equals(measure) {
-        let measurement = convertToCentimeter(this.value, this.unit);
-        let otherMeasurmenet = convertToCentimeter(measure.value, measure.unit);
-        return measurement === otherMeasurmenet;
+        let measurement = this.value * this.unit.toCentimeterFactor;
+        let otherMeasurement = measure.value * measure.unit.toCentimeterFactor;
+
+        return measurement === otherMeasurement;
     }
 }
 
 const Unit = {
-   'CM': 'cm',
-   'M': 'm'
-}
-
-function convertToCentimeter(value, unit) {
-    if (unit === Unit.M) { 
-        return value * 100; 
-    } 
-    
-    return value;
+   'CM': {
+       toCentimeterFactor: 1,
+   },
+   'M': {
+        toCentimeterFactor: 100,
+    },
+   'KM': {
+        toCentimeterFactor: 100000,
+    },
 }
 
 module.exports = {
