@@ -78,6 +78,26 @@ describe ("Measurement", function() {
             expect(result).toBe(true);
         });
     });
+    describe('TEMPERATURE', () => {
+        it("check if 100 Celsius is 212 Fahrenheit", () => {
+            let measurement1 = new Measurement(100, Unit.Celsius);
+            let measurement2 = new Measurement(212, Unit.Fahrenheit);
+            let result = measurement1.equals(measurement2)
+            expect(result).toBe(true);
+        });
+        it("check if 212 Fahrenheit is 100 Celsius", () => {
+            let measurement1 = new Measurement(212, Unit.Fahrenheit);
+            let measurement2 = new Measurement(100, Unit.Celsius);
+            let result = measurement1.equals(measurement2)
+            expect(result).toBe(true);
+        });
+        it("check if 32 Fahrenheit is 273.15 Kelvin", () => {
+            let measurement1 = new Measurement(32, Unit.Fahrenheit);
+            let measurement2 = new Measurement(273.15, Unit.Kelvin);
+            let result = measurement1.equals(measurement2)
+            expect(result).toBe(true);
+        });
+    });
     describe('INVALID COMPARISION', () => {
         it("checks if 1 grams is 1 centimeter should throw an error", () => {
             let measurement1 = new Measurement(1, Unit.Gram);

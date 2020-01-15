@@ -19,8 +19,11 @@ export default class Measurement {
     }
     convertToCommonUnit(measurement) {
         if (this.areUnitsEqual(measurement)) {
+            const firstPart = measurement.unit.multiplicativeUnitFactor / this.unit.multiplicativeUnitFactor;
+            const secondPart = measurement.value - measurement.unit.additionUnitFactor;
+            const thirdPart = this.unit.additionUnitFactor;
             return new Measurement(
-                ((measurement.value * measurement.unit.toUnitFactor) / this.unit.toUnitFactor),
+                (firstPart * secondPart) + thirdPart,
                 this.unit
             );
         }
