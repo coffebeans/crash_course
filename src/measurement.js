@@ -5,38 +5,83 @@ class Measurement {
     } 
     
     equals(measure) {
-        if(this.unit.type !== measure.unit.type) {
+
+        let otherMeasurement = this.convertToUnit(measure);
+       
+        return this.value === otherMeasurement.value;
+    }
+
+    add(measure){
+        let convertedMeasure = this.convertToUnit(measure);
+        return new Measurement(this.value + convertedMeasure.value, this.unit);
+    }
+
+    convertToUnit(measure) {
+        if (this.unit.type !== measure.unit.type) {
             throw new Error('Incompatible unit type');
         }
 
-        let measurement = this.value * this.unit.conversionFactor;
-        let otherMeasurement = measure.value * measure.unit.conversionFactor;
+        let convertedValue = {};
 
-        return measurement === otherMeasurement;
+        if (this.unit.type === 'temperature') {
+            convertedValue = ((this.unit.conversion.factor/measure.unit.conversion.factor) * (measure.value 
+                - measure.unit.conversion.difference)) + this.unit.conversion.difference;
+        }else{
+            convertedValue = measure.value * (this.unit.conversion/measure.unit.conversion);
+        }
+        
+    
+        return new Measurement(convertedValue, this.unit);
     }
+
 }
+
+
+
+
 
 const Unit = {
    'CM': {
-       conversionFactor: 1,
+       conversion: 100000,
        type: 'length'
    },
    'M': {
-        conversionFactor: 100,
+        conversion: 1000,
         type: 'length'
     },
    'KM': {
-        conversionFactor: 100000,
+        conversion: 1,
         type: 'length'
     },
     'G': {
-        conversionFactor: 1,
+        conversion: 1000,
         type: 'weight'
     },
     'KG': {
-         conversionFactor: 1000,
+         conversion: 1,
          type: 'weight'
      },
+     'Celsius': {
+        conversion: {
+            factor: 5,
+            difference: 0
+        },
+        type: 'temperature'
+     },
+     'Fahrenheit': {
+        conversion: {
+            factor: 9,
+            difference: 32
+        },
+        type: 'temperature'
+     },
+     'Kelvin': {
+        conversion: {
+            factor: 5,
+            difference: 273.15
+        },
+        type: 'temperature'
+     }
 }
 
 module.exports = {

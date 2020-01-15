@@ -21,6 +21,7 @@ describe("Measurement", () => {
             const meter_1000 = new Measurement(1000, Unit.M);
 
             const isEqual = meter_1000.equals(kilometer_1);
+
             expect(isEqual).toBe(true);
         });
 
@@ -46,5 +47,36 @@ describe("Measurement", () => {
 
             expect(() => { gram_1.equals(centimeter_1) }).toThrow('Incompatible unit type');
         });
+
+        it('should return true for Fahrenheit 32 and Kelvin 273.15', () => {
+            const fahrenheit_32 = new Measurement(32, Unit.Fahrenheit);
+            const kelvin_273_15 = new Measurement(273.15, Unit.Kelvin);
+
+            const isEqual = fahrenheit_32.equals(kelvin_273_15);
+            expect(isEqual).toBe(true);
+        });
+    });
+
+    describe('#add', () => {
+        it('should return 2m after adding 100cm with 1m', () => {
+            const centimeter_100 = new Measurement(100, Unit.CM);
+            const meter_1 = new Measurement(1, Unit.M);
+
+            const result = centimeter_100.add(meter_1);
+            const centimeter_200 = new Measurement(200, Unit.CM);
+
+            expect(result).toStrictEqual(centimeter_200);
+
+        });
+
+        it('should throw error on adding 100cm and 100gm', () => {
+            const gram_100 = new Measurement(100, Unit.G);
+            const centimeter_100 = new Measurement(100, Unit.CM);
+            expect(() => { centimeter_100.add(gram_100) }).toThrow('Incompatible unit type');
+        });
+
+
+
+
     });
 });
