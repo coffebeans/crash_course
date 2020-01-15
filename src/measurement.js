@@ -10,7 +10,7 @@ export default class Measurement {
             const incomingMeasurementObjInCommonUnit = this.convertToCommonUnit(measurement);
             return incomingMeasurementObjInCommonUnit.value === this.value;
         }
-        throw new Error('Invalid comparison!');
+        throw new Error('Invalid Unit types!');
     }
     add(measurement) {
         if (this.areUnitsEqual(measurement)) {
@@ -18,6 +18,7 @@ export default class Measurement {
             const resultantValueInCommonUnit = incomingMeasurementObjInCommonUnit.value + this.value;
             return new Measurement(resultantValueInCommonUnit, this.unit);
         }
+        throw new Error('Invalid Unit types!');
     }
     areUnitsEqual(measurement) {
         return measurement instanceof Measurement && measurement.unit.type === this.unit.type;

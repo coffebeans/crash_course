@@ -85,7 +85,7 @@ describe ("Measurement", function() {
             let result = () => {
                 measurement1.equals(measurement2);
             };
-            expect(result).toThrow('Invalid comparison!');
+            expect(result).toThrow('Invalid Unit types!');
         });
         it("checks if 1 kilogram is 1 kilometer should throw an error", () => {
             let measurement1 = new Measurement(1, Unit.Kilogram);
@@ -93,7 +93,7 @@ describe ("Measurement", function() {
             let result = () => {
                 measurement1.equals(measurement2)
             };
-            expect(result).toThrow('Invalid comparison!');
+            expect(result).toThrow('Invalid Unit types!');
         });
     });
     describe('Measurement Addition', () => {
@@ -110,6 +110,24 @@ describe ("Measurement", function() {
             let measurement3 = new Measurement(2, Unit.Meter);
             let result = measurement1.add(measurement2);
             expect(result).toStrictEqual(measurement3);
+        });
+    });
+    describe('INVALID Measurement Addition', () => {
+        it("should throw an error when tried to add 100 centimeter to 100 grams", () => {
+            let measurement1 = new Measurement(100, Unit.Centimeter);
+            let measurement2 = new Measurement(100, Unit.Gram);
+            let result = () => {
+                measurement1.add(measurement2);
+            };
+            expect(result).toThrow("Invalid Unit types!");
+        });
+        it("should throw an error when tried to add 100 grams to 100 centimeter", () => {
+            let measurement1 = new Measurement(100, Unit.Gram);
+            let measurement2 = new Measurement(100, Unit.Centimeter);
+            let result = () => {
+                measurement1.add(measurement2);
+            };
+            expect(result).toThrow("Invalid Unit types!");
         });
     });
 });
