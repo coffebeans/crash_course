@@ -100,14 +100,14 @@ describe ("Measurement", function() {
         it("adds 1 centimeter to 1 meter and return 2 meter", () => {
             let measurement1 = new Measurement(100, Unit.Centimeter);
             let measurement2 = new Measurement(1, Unit.Meter);
-            let measurement3 = new Measurement(2, Unit.Meter);
+            let measurement3 = new Measurement(200, Unit.Centimeter);
             let result = measurement1.add(measurement2);
             expect(result).toStrictEqual(measurement3);
         });
         it("adds 1 meter to 1 centimeter and return 2 meter", () => {
             let measurement1 = new Measurement(1, Unit.Meter);
             let measurement2 = new Measurement(100, Unit.Centimeter);
-            let measurement3 = new Measurement(200, Unit.Centimeter);
+            let measurement3 = new Measurement(2, Unit.Meter);
             let result = measurement1.add(measurement2);
             expect(result).toStrictEqual(measurement3);
         });

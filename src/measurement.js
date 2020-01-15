@@ -6,19 +6,26 @@ export default class Measurement {
         this.unit = unit;
     }
     equals(measurement) {
-        if (measurement instanceof Measurement && measurement.unit.type === this.unit.type) {
-            const incomingUnitValue = measurement.value * measurement.unit.toUnitFactor;
-            const currentUnitValue = this.value * this.unit.toUnitFactor;
-            return incomingUnitValue === currentUnitValue;
+        if (this.areUnitsEqual(measurement)) {
+            const incomingMeasurementObjInCommonUnit = this.convertToCommonUnit(measurement);
+            return incomingMeasurementObjInCommonUnit.value === this.value;
         }
         throw new Error('Invalid comparison!');
     }
     add(measurement) {
-        if (measurement instanceof Measurement && measurement.unit.type === this.unit.type) {
-            const incomingUnitValue = measurement.value * measurement.unit.toUnitFactor;
-            const currentUnitValue = this.value * this.unit.toUnitFactor
-            const resultantUnitValue = incomingUnitValue + currentUnitValue;
-            return new Measurement(resultantUnitValue/measurement.unit.toUnitFactor, measurement.unit);
+        if (this.areUnitsEqual(measurement)) {
+            const incomingMeasurementObjInCommonUnit = this.convertToCommonUnit(measurement);
+            const resultantValueInCommonUnit = incomingMeasurementObjInCommonUnit.value + this.value;
+            return new Measurement(resultantValueInCommonUnit, this.unit);
         }
+    }
+    areUnitsEqual(measurement) {
+        return measurement instanceof Measurement && measurement.unit.type === this.unit.type;
+    }
+    convertToCommonUnit(measurement) {
+        return new Measurement(
+            ((measurement.value * measurement.unit.toUnitFactor) / this.unit.toUnitFactor),
+            this.unit
+        );
     }
 }
