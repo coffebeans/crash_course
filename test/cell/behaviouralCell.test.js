@@ -8,8 +8,8 @@ describe('Behavioural Cell', () => {
     })
 
     it('should throw exception when invalid coordinates provided', () => {
-        const errorFunc = () => { new BehaviouralCell(0, 0) };
-        expect(errorFunc).toThrow('Invalid coordinates: x=0 y=0!');
+        const errorFunc = () => { new BehaviouralCell(-1, -1) };
+        expect(errorFunc).toThrow('Invalid coordinates: x=-1 y=-1!');
     });
 
     it('should have [x, y] coordinates equal to [3,3]', () => {

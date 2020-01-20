@@ -2,7 +2,7 @@ import DumbCell from './dumbCell';
 
 class BehaviouralCell {
   constructor(x, y, cellState = null) {
-    if (x < 1 || y < 1) {
+    if (x < 0 || y < 0) {
       throw new Error(`Invalid coordinates: x=${x} y=${y}!`);
     }
     this.x = x;
