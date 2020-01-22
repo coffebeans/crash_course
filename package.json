@@ -1,12 +1,13 @@
 {
-  "name": "template",
-  "version": "1.0.0",
-  "description": "it is a template for installing all dependencies needed for running a javascript code with testing",
-  "scripts": {
-    "test": "jest"
-  },
-  "author": "preeti",
+  "name": "game-of-life",
+  "version": "0.0.1",
+  "author": "Sudeep",
+  "description": "Conway's Game of life",
   "license": "ISC",
+  "scripts": {
+    "test": "./node_modules/.bin/jest --coverage --verbose",
+    "test:watch": "./node_modules/.bin/jest --watchAll --coverage --verbose"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.0",
     "@babel/core": "^7.8.0",
